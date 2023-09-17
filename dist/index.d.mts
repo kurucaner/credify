@@ -1,7 +1,7 @@
 import * as react from 'react';
 
 interface RenderProps {
-    value: string;
+    maskedValue: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onFocus: () => void;
     onBlur: () => void;
@@ -12,7 +12,8 @@ interface RenderProps {
 }
 interface CreditCardInputProps {
     render: (props: RenderProps) => React.ReactElement;
+    maskCharacter?: string;
 }
-declare const CreditCardInput: ({ render }: CreditCardInputProps) => react.ReactElement<any, string | react.JSXElementConstructor<any>>;
+declare const Cardify: ({ render, maskCharacter }: CreditCardInputProps) => react.ReactElement<any, string | react.JSXElementConstructor<any>>;
 
-export { CreditCardInput };
+export { Cardify };

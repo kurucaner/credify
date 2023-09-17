@@ -2215,12 +2215,9 @@ var require_react = __commonJS({
 // index.tsx
 var cardify_exports = {};
 __export(cardify_exports, {
-  CreditCardInput: () => CreditCardInput
+  Cardify: () => Cardify
 });
 module.exports = __toCommonJS(cardify_exports);
-
-// src/components/Input/Input.tsx
-var import_react = __toESM(require_react());
 
 // src/constants/card-patterns.ts
 var CARD_PATTERNS = {
@@ -2235,8 +2232,8 @@ var CARD_PATTERNS = {
 };
 
 // src/utils/helpers.ts
-var generateStars = (length) => {
-  return new Array(length).fill("*").join("");
+var generateStars = (length, maskCharacter) => {
+  return new Array(length).fill(maskCharacter || "*").join("");
 };
 
 // src/utils/formatters.ts
@@ -2254,12 +2251,12 @@ var formatGeneric = (number) => {
   }
   return parts.join("-");
 };
-var getMaskedCreditCardNumber = (value, cardType) => {
+var getMaskedCreditCardNumber = (value, cardType, maskCharacter) => {
   if (!value)
     return value;
   const number = value.replace(/[^\d]/g, "");
   const length = number.length;
-  const maskedNumber = generateStars(length);
+  const maskedNumber = generateStars(length, maskCharacter);
   switch (cardType) {
     case "AX":
       return formatAmex(maskedNumber);
@@ -2306,7 +2303,8 @@ var formatCreditCardNumber = (value) => {
 };
 
 // src/components/Input/Input.tsx
-var CreditCardInput = ({ render }) => {
+var import_react = __toESM(require_react());
+var Cardify = ({ render, maskCharacter }) => {
   const [hasFocus, setHasFocus] = (0, import_react.useState)(false);
   const [inputValue, setInputValue] = (0, import_react.useState)({
     value: "",
@@ -2325,7 +2323,7 @@ var CreditCardInput = ({ render }) => {
     });
   };
   return render({
-    value: hasFocus ? value : getMaskedCreditCardNumber(value, cardType),
+    maskedValue: hasFocus ? value : getMaskedCreditCardNumber(value, cardType, maskCharacter),
     onChange: handleChange,
     onFocus: () => setHasFocus(true),
     onBlur: () => setHasFocus(false),
@@ -2337,7 +2335,7 @@ var CreditCardInput = ({ render }) => {
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  CreditCardInput
+  Cardify
 });
 /*! Bundled license information:
 
