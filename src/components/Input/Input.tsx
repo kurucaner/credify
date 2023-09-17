@@ -14,7 +14,7 @@ export const Cardify = ({
   defaultValue,
 }: CreditCardInputProps) => {
   const [hasFocus, setHasFocus] = useState(false);
-  const [inputValue, setInputValue] = useState<CreditCardInfo>({
+  const [inputValue, setInputValue] = useState({
     value: defaultValue?.cardNumber || "",
     cardType: defaultValue?.cardType || "Unknown",
   });
