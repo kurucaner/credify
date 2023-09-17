@@ -1,10 +1,6 @@
 import { CARD_PATTERNS } from "@/constants/card-patterns";
 import { generateStars } from "./helpers";
-
-interface CreditCardNumber {
-  value: string;
-  cardType: string;
-}
+import { CardType, CreditCardNumber } from "@/types/input-types";
 
 const formatAmex = (number: string) => {
   if (number.length <= 4) return number;
@@ -22,7 +18,7 @@ const formatGeneric = (number: string) => {
 
 export const getMaskedCreditCardNumber = (
   value: string,
-  cardType: string,
+  cardType: CardType,
   maskCharacter?: string
 ) => {
   if (!value) return value;
@@ -45,9 +41,9 @@ export const getMaskedCreditCardNumber = (
   }
 };
 
-const detectCardType = (number: string) => {
+const detectCardType = (number: string): CardType => {
   for (let type in CARD_PATTERNS) {
-    if (CARD_PATTERNS[type]?.test(number)) return type;
+    if (CARD_PATTERNS[type as CardType]?.test(number)) return type as CardType;
   }
   return "Unknown";
 };
@@ -60,7 +56,6 @@ export const formatCreditCardNumber = (
   }
 
   const creditCardNumber = value.replace(/[^\d]/g, "");
-
   const cardType = detectCardType(creditCardNumber);
 
   switch (cardType) {

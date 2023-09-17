@@ -2291,7 +2291,11 @@ var formatCreditCardNumber = (value) => {
 
 // src/components/Input/Input.tsx
 var import_react = __toESM(require_react());
-var Cardify = ({ render, maskCharacter }) => {
+var Cardify = ({
+  render,
+  maskCharacter,
+  mask
+}) => {
   const [hasFocus, setHasFocus] = (0, import_react.useState)(false);
   const [inputValue, setInputValue] = (0, import_react.useState)({
     value: "",
@@ -2309,8 +2313,9 @@ var Cardify = ({ render, maskCharacter }) => {
       cardType: formattedValue.cardType
     });
   };
+  const isMasked = mask && !hasFocus;
   return render({
-    value: hasFocus ? value : getMaskedCreditCardNumber(value, cardType, maskCharacter),
+    value: isMasked ? getMaskedCreditCardNumber(value, cardType, maskCharacter) : value,
     onChange: handleChange,
     onFocus: () => setHasFocus(true),
     onBlur: () => setHasFocus(false),

@@ -60,6 +60,7 @@ export default function Home() {
 | --------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------- | ------------- |
 | `render`        | `({ value, onChange, onFocus, onBlur, placeholder, unmaskedValue, cardType }) => React.ReactNode` | Render prop for ultimate customization. | `undefined`   |
 | `maskCharacter` | `string`                                                                                          | The character to use for masking.       | `"•"`         |
+| `mask`          | `bool`                                                                                            | Whether to mask the input.              | `true`        |
 
 return render({
 maskedValue: hasFocus
@@ -76,16 +77,16 @@ ariaLabel: "Credit card number",
 
 ### Render prop arguments
 
-| Argument name   | Type     | Description                                         | Default value       |
-| --------------- | -------- | --------------------------------------------------- | ------------------- |
-| `value`         | `string` | The masked value.                                   | `""`                |
-| `onChange`      | `func`   | The function to call when the value changes.        | `handleChange`      |
-| `onFocus`       | `func`   | The function to call when the input is focused.     | `undefined`         |
-| `onBlur`        | `func`   | The function to call when the input is blurred.     | `undefined`         |
-| `placeholder`   | `string` | The placeholder to display when the input is empty. | `Enter card number` |
-| `unmaskedValue` | `string` | The unmasked value.                                 | `""`                |
-| `cardType`      | `string` | The card type.                                      | `""`                |
-| `ariaLabel`     | `string` | The aria label for the input.                       | `""`                |
+| Argument name   | Type     | Description                                                         | Default value       |
+| --------------- | -------- | ------------------------------------------------------------------- | ------------------- |
+| `value`         | `string` | Value of the input is unmasked when focused and masked when blurred | `""`                |
+| `onChange`      | `func`   | The function to call when the value changes.                        | `handleChange`      |
+| `onFocus`       | `func`   | The function to call when the input is focused.                     | `undefined`         |
+| `onBlur`        | `func`   | The function to call when the input is blurred.                     | `undefined`         |
+| `placeholder`   | `string` | The placeholder to display when the input is empty.                 | `Enter card number` |
+| `unmaskedValue` | `string` | The unmasked value.                                                 | `""`                |
+| `cardType`      | `string` | The card type.                                                      | `""`                |
+| `ariaLabel`     | `string` | The aria label for the input.                                       | `""`                |
 
 ## License
 

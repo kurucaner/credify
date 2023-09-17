@@ -1,8 +1,6 @@
-interface CardPatterns {
-  [key: string]: RegExp;
-}
+import { CardType } from "@/types/input-types";
 
-export const CARD_PATTERNS: CardPatterns = {
+export const CARD_PATTERNS: { [key in CardType]?: RegExp } = {
   AX: /^3[47]\d{0,13}$/,
   VI: /^4\d{0,15}$/,
   MC: /^5[1-5]\d{0,14}$/,

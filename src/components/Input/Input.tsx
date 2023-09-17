@@ -2,30 +2,14 @@ import {
   formatCreditCardNumber,
   getMaskedCreditCardNumber,
 } from "@/utils/formatters";
+import { CreditCardInputProps, CreditCardNumber } from "@/types/input-types";
 import { useState } from "react";
 
-interface RenderProps {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus: () => void;
-  onBlur: () => void;
-  placeholder: string;
-  unmaskedValue?: string;
-  cardType: string;
-  ariaLabel?: string;
-}
-
-interface CreditCardInputProps {
-  render: (props: RenderProps) => React.ReactElement;
-  maskCharacter?: string;
-}
-
-interface CreditCardNumber {
-  value: string;
-  cardType: string;
-}
-
-export const Cardify = ({ render, maskCharacter }: CreditCardInputProps) => {
+export const Cardify = ({
+  render,
+  maskCharacter,
+  mask,
+}: CreditCardInputProps) => {
   const [hasFocus, setHasFocus] = useState(false);
   const [inputValue, setInputValue] = useState<CreditCardNumber>({
     value: "",
@@ -45,10 +29,12 @@ export const Cardify = ({ render, maskCharacter }: CreditCardInputProps) => {
     });
   };
 
+  const isMasked = mask && !hasFocus;
+
   return render({
-    value: hasFocus
-      ? value
-      : getMaskedCreditCardNumber(value, cardType, maskCharacter),
+    value: isMasked
+      ? getMaskedCreditCardNumber(value, cardType, maskCharacter)
+      : value,
     onChange: handleChange,
     onFocus: () => setHasFocus(true),
     onBlur: () => setHasFocus(false),
