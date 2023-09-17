@@ -62,18 +62,40 @@ export default function Home() {
 | `maskCharacter` | `string`                                                                                          | The character to use for masking.       | `"•"`         |
 | `mask`          | `bool`                                                                                            | Whether to mask the input.              | `true`        |
 
-return render({
-maskedValue: hasFocus
-? value
-: getMaskedCreditCardNumber(value, cardType, maskCharacter),
-onChange: handleChange,
-onFocus: () => setHasFocus(true),
-onBlur: () => setHasFocus(false),
-placeholder: "Enter credit card number",
-unmaskedValue: value,
-cardType,
-ariaLabel: "Credit card number",
-});
+## Usage
+
+```jsx
+import { Cardify } from "react-cardify";
+
+export default function Home() {
+  return (
+    <Cardify
+      render={({
+        value,
+        onChange,
+        onFocus,
+        onBlur,
+        placeholder,
+        unmaskedValue,
+        cardType,
+      }) => {
+        console.log("value", value);
+        console.log("unmaskedValue", unmaskedValue);
+        console.log("cardType", cardType);
+        return (
+          <input
+            value={value}
+            onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            placeholder={placeholder}
+          />
+        );
+      }}
+    />
+  );
+}
+```
 
 ### Render prop arguments
 
@@ -91,3 +113,8 @@ ariaLabel: "Credit card number",
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Dependencies
+
+- [react](https://ghub.io/react): React is a JavaScript library for building user interfaces.
+- [react-dom](https://ghub.io/react-dom): React package for working with the DOM.
