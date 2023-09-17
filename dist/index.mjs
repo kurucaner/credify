@@ -84,37 +84,47 @@ var formatCreditCardNumber = (value) => {
 // src/components/Input/Input.tsx
 import { useState } from "react";
 var Cardify = ({
+  value: controlledValue,
+  onChange: controlledOnChange,
   render,
   maskCharacter,
-  mask
+  mask,
+  defaultValue
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
   const [inputValue, setInputValue] = useState({
-    value: "",
+    value: defaultValue || "",
     cardType: "Unknown"
   });
   const { value, cardType } = inputValue;
-  const handleChange = (e) => {
-    const maxLength = cardType === "AX" ? 17 : 19;
-    if (e.target.value.length > maxLength)
-      return;
-    const rawValue = e.target.value;
-    const formattedValue = formatCreditCardNumber(rawValue);
+  const formatAndSetValue = (value2, e) => {
+    const formattedValue = formatCreditCardNumber(value2);
+    if (controlledOnChange) {
+      controlledOnChange({
+        event: e,
+        value: formattedValue.value
+      });
+    }
     setInputValue({
       value: formattedValue.value,
       cardType: formattedValue.cardType
     });
   };
-  const isMasked = mask && !hasFocus;
+  const handleChange = (e) => {
+    const rawValue = e.target.value;
+    formatAndSetValue(rawValue, e);
+  };
+  const isMasked = mask || !hasFocus;
+  if (!render)
+    return null;
+  const valueToRender = controlledValue || value;
   return render({
-    value: isMasked ? getMaskedCreditCardNumber(value, cardType, maskCharacter) : value,
+    value: isMasked ? getMaskedCreditCardNumber(valueToRender, cardType, maskCharacter) : valueToRender,
     onChange: handleChange,
     onFocus: () => setHasFocus(true),
     onBlur: () => setHasFocus(false),
-    placeholder: "Enter credit card number",
-    unmaskedValue: value,
-    cardType,
-    ariaLabel: "Credit card number"
+    unmaskedValue: valueToRender,
+    cardType
   });
 };
 export {

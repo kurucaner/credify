@@ -1,6 +1,6 @@
 import { CARD_PATTERNS } from "@/constants/card-patterns";
 import { generateStars } from "./helpers";
-import { CardType, CreditCardNumber } from "@/types/input-types";
+import { CardType, CreditCardInfo } from "@/types/input-types";
 
 const formatAmex = (number: string) => {
   if (number.length <= 4) return number;
@@ -50,7 +50,7 @@ const detectCardType = (number: string): CardType => {
 
 export const formatCreditCardNumber = (
   value?: string | null
-): CreditCardNumber => {
+): CreditCardInfo => {
   if (!value || typeof value !== "string") {
     return { value: "", cardType: "Unknown" };
   }

@@ -23,10 +23,6 @@ interface RenderProps {
      */
     onBlur: () => void;
     /**
-     * Placeholder text for the input
-     */
-    placeholder: string;
-    /**
      * Unmasked value of the input
      */
     unmaskedValue?: string;
@@ -40,12 +36,19 @@ interface RenderProps {
      */
     ariaLabel?: string;
 }
+interface ControlledOnChangeProps {
+    event: React.ChangeEvent<HTMLInputElement>;
+    value: string;
+}
 interface CreditCardInputProps {
+    value?: string;
+    onChange?: ({ event, value }: ControlledOnChangeProps) => void;
     render: (props: RenderProps) => React.ReactElement;
     maskCharacter?: string;
     mask?: boolean;
+    defaultValue?: string;
 }
 
-declare const Cardify: ({ render, maskCharacter, mask, }: CreditCardInputProps) => react.ReactElement<any, string | react.JSXElementConstructor<any>>;
+declare const Cardify: ({ value: controlledValue, onChange: controlledOnChange, render, maskCharacter, mask, defaultValue, }: CreditCardInputProps) => react.ReactElement<any, string | react.JSXElementConstructor<any>> | null;
 
 export { Cardify };

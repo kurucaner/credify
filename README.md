@@ -64,6 +64,8 @@ export default function Home() {
 
 ## Usage
 
+### Uncontrolled
+
 ```jsx
 import { Cardify } from "react-cardify";
 
@@ -90,6 +92,47 @@ export default function Home() {
             onBlur={onBlur}
             placeholder={placeholder}
           />
+        );
+      }}
+    />
+  );
+}
+```
+
+### Controlled
+
+```jsx
+import { useState } from "react";
+import { Cardify } from "react-cardify";
+
+export default function Home() {
+  const defaultValue = "95827712367284";
+  const [controlledValue, setControlledValue] = useState(defaultValue);
+
+  return (
+    <_Cardify
+      value={controlledValue}
+      onChange={({ event, value }: { event: any, value: string }) =>
+        setControlledValue(value)
+      }
+      defaultValue={defaultValue}
+      render={({
+        value,
+        onChange,
+        onFocus,
+        onBlur,
+        unmaskedValue,
+        cardType,
+      }) => {
+        return (
+          <div>
+            <input
+              value={value}
+              onChange={onChange}
+              onFocus={onFocus}
+              onBlur={onBlur}
+            />
+          </div>
         );
       }}
     />

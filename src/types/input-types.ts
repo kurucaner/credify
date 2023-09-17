@@ -30,10 +30,6 @@ export interface RenderProps {
    */
   onBlur: () => void;
   /**
-   * Placeholder text for the input
-   */
-  placeholder: string;
-  /**
    * Unmasked value of the input
    */
   unmaskedValue?: string;
@@ -47,14 +43,20 @@ export interface RenderProps {
    */
   ariaLabel?: string;
 }
-
+interface ControlledOnChangeProps {
+  event: React.ChangeEvent<HTMLInputElement>;
+  value: string;
+}
 export interface CreditCardInputProps {
+  value?: string;
+  onChange?: ({ event, value }: ControlledOnChangeProps) => void;
   render: (props: RenderProps) => React.ReactElement;
   maskCharacter?: string;
   mask?: boolean;
+  defaultValue?: string;
 }
 
-export interface CreditCardNumber {
+export interface CreditCardInfo {
   value: string;
   cardType: CardType;
 }
