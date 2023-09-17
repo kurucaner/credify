@@ -1,0 +1,34 @@
+{
+  "name": "cardify",
+  "version": "1.0.0",
+  "description": "An intuitive and sleek input component for credit card formatting. Seamlessly detects card types, ensures optimal formatting, and enhances user experience for payment forms.",
+  "main": "index.tsx",
+  "scripts": {
+    "build": "tsup index.tsx --format cjs,esm --dts",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kurucaner/cardify.git"
+  },
+  "keywords": [
+    "credit",
+    "card",
+    "input",
+    "formatting",
+    "payment",
+    "form"
+  ],
+  "author": "Caner Kuru",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kurucaner/credify/issues"
+  },
+  "homepage": "https://github.com/kurucaner/credify#readme",
+  "devDependencies": {
+    "@types/react": "^18.2.21",
+    "react": "^18.2.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  }
+}
