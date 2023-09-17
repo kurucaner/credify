@@ -29,7 +29,7 @@ export const Cardify = ({
     });
   };
 
-  const isMasked = mask && !hasFocus;
+  const isMasked = mask || !hasFocus;
 
   return render({
     value: isMasked
