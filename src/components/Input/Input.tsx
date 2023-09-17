@@ -15,8 +15,8 @@ export const Cardify = ({
 }: CreditCardInputProps) => {
   const [hasFocus, setHasFocus] = useState(false);
   const [inputValue, setInputValue] = useState<CreditCardInfo>({
-    value: defaultValue || "",
-    cardType: "Unknown",
+    value: defaultValue?.cardNumber || "",
+    cardType: defaultValue?.cardType || "Unknown",
   });
 
   const { value, cardType } = inputValue;
@@ -27,7 +27,10 @@ export const Cardify = ({
     if (controlledOnChange) {
       controlledOnChange({
         event: e,
-        value: formattedValue.value,
+        value: {
+          cardNumber: formattedValue.value,
+          cardType: formattedValue.cardType,
+        },
       });
     }
 

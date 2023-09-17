@@ -45,7 +45,15 @@ export interface RenderProps {
 }
 interface ControlledOnChangeProps {
   event: React.ChangeEvent<HTMLInputElement>;
-  value: string;
+  value: {
+    cardNumber: string;
+    cardType: CardType;
+  };
+}
+
+interface DefaultValueProps {
+  cardNumber: string;
+  cardType: CardType;
 }
 export interface CreditCardInputProps {
   value?: string;
@@ -53,7 +61,7 @@ export interface CreditCardInputProps {
   render: (props: RenderProps) => React.ReactElement;
   maskCharacter?: string;
   mask?: boolean;
-  defaultValue?: string;
+  defaultValue?: DefaultValueProps;
 }
 
 export interface CreditCardInfo {
