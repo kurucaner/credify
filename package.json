@@ -1,5 +1,5 @@
 {
-  "name": "cardify",
+  "name": "react-cardify",
   "version": "1.0.0",
   "description": "An intuitive and sleek input component for credit card formatting. Seamlessly detects card types, ensures optimal formatting, and enhances user experience for payment forms.",
   "main": "dist/index.js",
@@ -7,7 +7,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup index.tsx --format cjs,esm --dts",
-    "test": "test"
+    "test": "test",
+    "lint": "tsc"
   },
   "repository": {
     "type": "git",

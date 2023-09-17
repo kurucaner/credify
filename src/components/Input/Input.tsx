@@ -24,7 +24,7 @@ interface CreditCardNumber {
   cardType: string;
 }
 
-export const CreditCardInput = ({ render }: CreditCardInputProps) => {
+export const Cardify = ({ render }: CreditCardInputProps) => {
   const [hasFocus, setHasFocus] = useState(false);
   const [inputValue, setInputValue] = useState<CreditCardNumber>({
     value: "",
