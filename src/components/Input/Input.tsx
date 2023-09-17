@@ -17,6 +17,7 @@ interface RenderProps {
 
 interface CreditCardInputProps {
   render: (props: RenderProps) => React.ReactElement;
+  maskCharacter?: string;
 }
 
 interface CreditCardNumber {
@@ -24,7 +25,7 @@ interface CreditCardNumber {
   cardType: string;
 }
 
-export const Cardify = ({ render }: CreditCardInputProps) => {
+export const Cardify = ({ render, maskCharacter }: CreditCardInputProps) => {
   const [hasFocus, setHasFocus] = useState(false);
   const [inputValue, setInputValue] = useState<CreditCardNumber>({
     value: "",
@@ -45,7 +46,9 @@ export const Cardify = ({ render }: CreditCardInputProps) => {
   };
 
   return render({
-    value: hasFocus ? value : getMaskedCreditCardNumber(value, cardType),
+    value: hasFocus
+      ? value
+      : getMaskedCreditCardNumber(value, cardType, maskCharacter),
     onChange: handleChange,
     onFocus: () => setHasFocus(true),
     onBlur: () => setHasFocus(false),

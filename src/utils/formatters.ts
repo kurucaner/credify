@@ -20,11 +20,15 @@ const formatGeneric = (number: string) => {
   return parts.join("-");
 };
 
-export const getMaskedCreditCardNumber = (value: string, cardType: string) => {
+export const getMaskedCreditCardNumber = (
+  value: string,
+  cardType: string,
+  maskCharacter?: string
+) => {
   if (!value) return value;
   const number = value.replace(/[^\d]/g, "");
   const length = number.length;
-  const maskedNumber = generateStars(length);
+  const maskedNumber = generateStars(length, maskCharacter);
   switch (cardType) {
     case "AX":
       return formatAmex(maskedNumber);
