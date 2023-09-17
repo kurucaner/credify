@@ -1,7 +1,7 @@
 import * as react from 'react';
 
 interface RenderProps {
-    maskedValue: string;
+    value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onFocus: () => void;
     onBlur: () => void;

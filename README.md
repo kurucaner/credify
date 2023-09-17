@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <Cardify
       render={({
-        maskedValue,
+        value,
         onChange,
         onFocus,
         onBlur,
@@ -36,12 +36,12 @@ export default function Home() {
         unmaskedValue,
         cardType,
       }) => {
-        console.log("maskedValue", maskedValue);
+        console.log("value", value);
         console.log("unmaskedValue", unmaskedValue);
         console.log("cardType", cardType);
         return (
           <input
-            value={maskedValue}
+            value={value}
             onChange={onChange}
             onFocus={onFocus}
             onBlur={onBlur}
@@ -79,7 +79,7 @@ ariaLabel: "Credit card number",
 | Argument name   | Type     | Description                                         | Default value       |
 | --------------- | -------- | --------------------------------------------------- | ------------------- |
 | `value`         | `string` | The masked value.                                   | `""`                |
-| `onChange`      | `func`   | The function to call when the value changes.        | `undefined`         |
+| `onChange`      | `func`   | The function to call when the value changes.        | `handleChange`      |
 | `onFocus`       | `func`   | The function to call when the input is focused.     | `undefined`         |
 | `onBlur`        | `func`   | The function to call when the input is blurred.     | `undefined`         |
 | `placeholder`   | `string` | The placeholder to display when the input is empty. | `Enter card number` |

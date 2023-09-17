@@ -2323,7 +2323,7 @@ var Cardify = ({ render, maskCharacter }) => {
     });
   };
   return render({
-    maskedValue: hasFocus ? value : getMaskedCreditCardNumber(value, cardType, maskCharacter),
+    value: hasFocus ? value : getMaskedCreditCardNumber(value, cardType, maskCharacter),
     onChange: handleChange,
     onFocus: () => setHasFocus(true),
     onBlur: () => setHasFocus(false),
