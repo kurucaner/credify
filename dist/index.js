@@ -17,7 +17,7 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// index.tsx
+// index.ts
 var cardify_exports = {};
 __export(cardify_exports, {
   Cardify: () => Cardify
@@ -119,8 +119,8 @@ var Cardify = ({
 }) => {
   const [hasFocus, setHasFocus] = (0, import_react.useState)(false);
   const [inputValue, setInputValue] = (0, import_react.useState)({
-    value: defaultValue || "",
-    cardType: "Unknown"
+    value: (defaultValue == null ? void 0 : defaultValue.cardNumber) || "",
+    cardType: (defaultValue == null ? void 0 : defaultValue.cardType) || "Unknown"
   });
   const { value, cardType } = inputValue;
   const formatAndSetValue = (value2, e) => {
@@ -128,7 +128,10 @@ var Cardify = ({
     if (controlledOnChange) {
       controlledOnChange({
         event: e,
-        value: formattedValue.value
+        value: {
+          cardNumber: formattedValue.value,
+          cardType: formattedValue.cardType
+        }
       });
     }
     setInputValue({

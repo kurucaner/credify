@@ -93,8 +93,8 @@ var Cardify = ({
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
   const [inputValue, setInputValue] = useState({
-    value: defaultValue || "",
-    cardType: "Unknown"
+    value: (defaultValue == null ? void 0 : defaultValue.cardNumber) || "",
+    cardType: (defaultValue == null ? void 0 : defaultValue.cardType) || "Unknown"
   });
   const { value, cardType } = inputValue;
   const formatAndSetValue = (value2, e) => {
@@ -102,7 +102,10 @@ var Cardify = ({
     if (controlledOnChange) {
       controlledOnChange({
         event: e,
-        value: formattedValue.value
+        value: {
+          cardNumber: formattedValue.value,
+          cardType: formattedValue.cardType
+        }
       });
     }
     setInputValue({
