@@ -23,6 +23,7 @@ bun install react-cardify
 
 ```jsx
 import Cardify from "react-cardify";
+
 export default function Home() {
   return (
     <Cardify
@@ -51,3 +52,10 @@ export default function Home() {
   );
 }
 ```
+
+## Props
+
+| Prop name       | Type                                                                                              | Description                             | Default value |
+| --------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------- | ------------- |
+| `render`        | `({ value, onChange, onFocus, onBlur, placeholder, unmaskedValue, cardType }) => React.ReactNode` | Render prop for ultimate customization. | `undefined`   |
+| `maskCharacter` | `string`                                                                                          | The character to use for masking.       | `"•"`         |

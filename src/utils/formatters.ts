@@ -1,5 +1,10 @@
-import { CARD_PATTERNS } from "../constants/card-patterns";
+import { CARD_PATTERNS } from "@/constants/card-patterns";
 import { generateStars } from "./helpers";
+
+interface CreditCardNumber {
+  value: string;
+  cardType: string;
+}
 
 const formatAmex = (number: string) => {
   if (number.length <= 4) return number;

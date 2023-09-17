@@ -14,7 +14,11 @@
     "typeRoots": [
       "./node_modules/@types",
       "./src/types"
-    ] /* Specify folders to include type definitions from. */
+    ] /* Specify folders to include type definitions from. */,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    }
   },
   "exclude": ["node_modules", "dist"] /* Specify files to exclude. */
 }

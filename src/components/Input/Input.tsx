@@ -1,8 +1,8 @@
-import { useState } from "react";
 import {
   formatCreditCardNumber,
   getMaskedCreditCardNumber,
-} from "../../utils/formatters";
+} from "@/utils/formatters";
+import { useState } from "react";
 
 interface RenderProps {
   value: string;
