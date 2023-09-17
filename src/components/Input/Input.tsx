@@ -5,7 +5,7 @@ import {
 import { useState } from "react";
 
 interface RenderProps {
-  maskedValue: string;
+  value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus: () => void;
   onBlur: () => void;
@@ -46,7 +46,7 @@ export const Cardify = ({ render, maskCharacter }: CreditCardInputProps) => {
   };
 
   return render({
-    maskedValue: hasFocus
+    value: hasFocus
       ? value
       : getMaskedCreditCardNumber(value, cardType, maskCharacter),
     onChange: handleChange,
