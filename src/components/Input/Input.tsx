@@ -2,7 +2,7 @@ import {
   formatCreditCardNumber,
   getMaskedCreditCardNumber,
 } from "@/utils/formatters";
-import { CreditCardInputProps, CreditCardInfo } from "@/types/input-types";
+import { CreditCardInputProps } from "@/types/input-types";
 import { useState } from "react";
 
 export const Cardify = ({
@@ -15,7 +15,7 @@ export const Cardify = ({
 }: CreditCardInputProps) => {
   const [hasFocus, setHasFocus] = useState(false);
   const [inputValue, setInputValue] = useState({
-    value: defaultValue?.cardNumber || "",
+    value: formatCreditCardNumber(defaultValue?.cardNumber).cardNumber || "",
     cardType: defaultValue?.cardType || "Unknown",
   });
 
@@ -28,14 +28,14 @@ export const Cardify = ({
       controlledOnChange({
         event: e,
         value: {
-          cardNumber: formattedValue.value,
+          cardNumber: formattedValue.cardNumber,
           cardType: formattedValue.cardType,
         },
       });
     }
 
     setInputValue({
-      value: formattedValue.value,
+      value: formattedValue.cardNumber,
       cardType: formattedValue.cardType,
     });
   };

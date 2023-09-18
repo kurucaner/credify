@@ -52,7 +52,7 @@ export const formatCreditCardNumber = (
   value?: string | null
 ): CreditCardInfo => {
   if (!value || typeof value !== "string") {
-    return { value: "", cardType: "Unknown" };
+    return { cardNumber: "", cardType: "Unknown" };
   }
 
   const creditCardNumber = value.replace(/[^\d]/g, "");
@@ -60,7 +60,7 @@ export const formatCreditCardNumber = (
 
   switch (cardType) {
     case "AX":
-      return { value: formatAmex(creditCardNumber) || "", cardType };
+      return { cardNumber: formatAmex(creditCardNumber) || "", cardType };
     case "VI":
     case "MC":
     case "DI":
@@ -68,8 +68,8 @@ export const formatCreditCardNumber = (
     case "DC":
     case "UP":
     case "Unknown":
-      return { value: formatGeneric(creditCardNumber), cardType };
+      return { cardNumber: formatGeneric(creditCardNumber), cardType };
     default:
-      return { value: creditCardNumber, cardType };
+      return { cardNumber: creditCardNumber, cardType };
   }
 };

@@ -43,17 +43,17 @@ interface ControlledOnChangeProps {
         cardType: CardType;
     };
 }
-interface DefaultValueProps {
-    cardNumber: string;
-    cardType: CardType;
-}
 interface CreditCardInputProps {
     value?: string;
     onChange?: ({ event, value }: ControlledOnChangeProps) => void;
     render: (props: RenderProps) => React.ReactElement;
     maskCharacter?: string;
     mask?: boolean;
-    defaultValue?: DefaultValueProps;
+    defaultValue?: CreditCardInfo;
+}
+interface CreditCardInfo {
+    cardNumber: string;
+    cardType: CardType;
 }
 
 declare const Cardify: ({ value: controlledValue, onChange: controlledOnChange, render, maskCharacter, mask, defaultValue, }: CreditCardInputProps) => react.ReactElement<any, string | react.JSXElementConstructor<any>> | null;

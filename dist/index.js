@@ -87,13 +87,13 @@ var detectCardType = (number) => {
 };
 var formatCreditCardNumber = (value) => {
   if (!value || typeof value !== "string") {
-    return { value: "", cardType: "Unknown" };
+    return { cardNumber: "", cardType: "Unknown" };
   }
   const creditCardNumber = value.replace(/[^\d]/g, "");
   const cardType = detectCardType(creditCardNumber);
   switch (cardType) {
     case "AX":
-      return { value: formatAmex(creditCardNumber) || "", cardType };
+      return { cardNumber: formatAmex(creditCardNumber) || "", cardType };
     case "VI":
     case "MC":
     case "DI":
@@ -101,9 +101,9 @@ var formatCreditCardNumber = (value) => {
     case "DC":
     case "UP":
     case "Unknown":
-      return { value: formatGeneric(creditCardNumber), cardType };
+      return { cardNumber: formatGeneric(creditCardNumber), cardType };
     default:
-      return { value: creditCardNumber, cardType };
+      return { cardNumber: creditCardNumber, cardType };
   }
 };
 
@@ -119,7 +119,7 @@ var Cardify = ({
 }) => {
   const [hasFocus, setHasFocus] = (0, import_react.useState)(false);
   const [inputValue, setInputValue] = (0, import_react.useState)({
-    value: (defaultValue == null ? void 0 : defaultValue.cardNumber) || "",
+    value: formatCreditCardNumber(defaultValue == null ? void 0 : defaultValue.cardNumber).cardNumber || "",
     cardType: (defaultValue == null ? void 0 : defaultValue.cardType) || "Unknown"
   });
   const { value, cardType } = inputValue;
@@ -129,13 +129,13 @@ var Cardify = ({
       controlledOnChange({
         event: e,
         value: {
-          cardNumber: formattedValue.value,
+          cardNumber: formattedValue.cardNumber,
           cardType: formattedValue.cardType
         }
       });
     }
     setInputValue({
-      value: formattedValue.value,
+      value: formattedValue.cardNumber,
       cardType: formattedValue.cardType
     });
   };
